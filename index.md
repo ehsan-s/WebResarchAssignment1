@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+<html>
+ <head>
+ <style>
+  @font-face{
+    font-family: 'myFont';
+    src: url('BNazanin.ttf');
+  }
+  </style>
+ </head>
+ <body>
+  <p>
+    ارث¬بری در برنامه نویسی زمانی استفاده می¬شود که یک شی یا کلاس مبنی و متکی بر شی یا کلاس دیگری تعریف شود. در js کتابخانه¬های زیادی برای استفاده راحت تر و بهتر از ارث¬بری نوشته شده¬اند که از نوشتار متفاوتی برای پیاده¬سازی ارث¬بری استفاده ¬می¬کنند ولی از آن¬جایی که در js  پیاده سازی شی-گرایی به وسیله زنجیره ای از prototype هاست درخود کتابخانه به وسیله prototype پیاده سازی شده است . پیاده¬سازی  دراین¬جا به یکی از این روش ها می پردازیم:
+•	در js فقط شی داریم و در این¬جا منظور از کلاس شی است که کاربردی مشابه کلاس در زبان¬های برپایه کلاس دارد. هر کلاسی برای ساخته شدن باید از کلاس موجود دیگری ارث برد و تمام کلاس ها از یک کلاس واحد به نام Class ارث می برند ( به صورت مستقیم یا به وسیله تعدادی رابطه پدر-فرزندی) در نتیجه اگرمی خواستیم کلاسی تعریف کنیم که بچه کلاس تعریف شده ای نیست باید از Class ارث ببرد. تعریف ارث بری به طریق زیر است :
+Var Child = Parent.extend(prop);
+	که prop یک دیکشنری است که کلیدهای آن اسم توابع و مقادیر آن خود توابع هستند.
+•	در کلاس فرزند نیاز به دسترسی به متد هایی از کلاس پدر داریم که در کلاس فرزند تغییراتی در آن ها بوجود آورده ایم (آن ها را override کرده ایم). در این صورت متد ._super() در داخل متد تغییر داده شده شده فرزند قابل استفاده است و همان متد از پدر را صدا می زند.
+در ادامه مثالی برای نحوه پیاده سازی ارث بری به این روش می آوریم :
+var Person = Class.extend({
+  init: function(isDancing){
+    this.dancing = isDancing;
+  },
+  dance: function(){
+    return this.dancing;
+  }
+});
+ 
+var Ninja = Person.extend({
+  init: function(){
+    this._super( false );
+  },
+  dance: function(){
+    // Call the inherited version of dance()
+    return this._super();
+  },
+  swingSword: function(){
+    return true;
+  }
+});
+ 
+var p = new Person(true);
+p.dance(); // => true
+  
+در این روش کلاس ما در ظاهربه صورت یک دیکشنری است که به عنوان ورودی در)  Parent.extend( می آید ولی درعمل اتفاقی که می افتد این است که برای ساختن کلاس جدید ابتدا از کلاس پدر یک  instanceجدید می سازیم و به ترتیب برای توابع آن چک می شود که اگر کلاس پدر نیز آن را دارد تغییرات لازم اعمال شود ( در این جا از متد apply بهره می بریم) و درغیر این صورت به کلاس اضافه شوند.
+هم چنین نیازی به ایجاد یک Instance جدید کامل از کلاس پدر همراه با صدا کردن constructor آن وجود ندارد (صدا کردن constrctor می تواند هزینه زیادی داشته باشد) و تنها می خواهیم از فواید استفاده از ‘instanceof’ بهره ببریم برای همین از متغیر initializing استفاده می کنیم که در زمان instanciation یک کلاس اگر مقدار1 داشته باشد constructor آن صدا زده نمی شود.  
 
-You can use the [editor on GitHub](https://github.com/soltanaghaei97/soltanaghaei97.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/soltanaghaei97/soltanaghaei97.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+  </p>
+ </body>
